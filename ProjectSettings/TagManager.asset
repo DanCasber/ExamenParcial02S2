@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - BlockMoving
+  - Coin
+  - Spikes
+  - Heart
+  - LavaItem
+  - Lava
   layers:
   - Default
   - TransparentFX
