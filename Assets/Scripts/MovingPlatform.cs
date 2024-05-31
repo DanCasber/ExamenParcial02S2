@@ -43,15 +43,6 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            Debug.Log("Trigger Enter Player");
-            other.transform.parent = this.transform;
-        }
-    }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")

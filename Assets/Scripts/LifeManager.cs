@@ -20,12 +20,6 @@ public class LifeManager : MonoBehaviour
         UpdateLife();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Spikes")
@@ -60,6 +54,20 @@ public class LifeManager : MonoBehaviour
             Destroy(other.gameObject);
             ChangePlayerLayer("Outline Objects");
         }
+
+        if (other.gameObject.tag == "BlockMoving")
+        {
+            transform.parent = other.transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "BlockMoving")
+        {
+            Debug.Log("Trigger Exit Player");
+            transform.parent = null;
+        }
     }
 
     void UpdateLife()
@@ -70,8 +78,7 @@ public class LifeManager : MonoBehaviour
 
         if (currentLife == 0)
         {
-            StartCoroutine(DissolveEffect());
-            // Trigger Death Canvas
+            StartCoroutine(DeathManager());
         }
     }
 
@@ -92,8 +99,9 @@ public class LifeManager : MonoBehaviour
         }
     }
 
-    IEnumerator DissolveEffect()
+    IEnumerator DeathManager()
     {
+        // Dissolve Effect
         float elapsedTime = 0f;
         while (elapsedTime < dissolveDuration)
         {
@@ -102,6 +110,18 @@ public class LifeManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        dissolveMaterial.SetFloat("_dissolveStrength", 1f); 
+        dissolveMaterial.SetFloat("_dissolveStrength", 1f);
+
+        // Destroy player object
+        Transform firstChild = transform.GetChild(0);
+        Destroy(firstChild.gameObject);
+
+        // Pause Gameplay
+        Time.timeScale = 0f;
+
+        // Reset dissolve effect
+        dissolveMaterial.SetFloat("_dissolveStrength", 0f);
+
+        // Trigger Death Canvas
     }
 }
