@@ -7,7 +7,7 @@ public class EndMenu : MonoBehaviour
 {
     public void PlayAgain()
     {
-        SceneManager.LoadScene("Testing");
+        SceneManager.LoadScene("Level");
         Time.timeScale = 1f;
     }
 

@@ -19,10 +19,8 @@ public class MovingPlatform : MonoBehaviour
 
     private void Update()
     {
-        platform.position = Vector3.Lerp(platform.position, targetPosition, speed * Time.deltaTime);
-
         // Move the platform towards the target position
-        //platform.position = Vector3.MoveTowards(platform.position, targetPosition, speed * Time.deltaTime);
+        platform.position = Vector3.Lerp(platform.position, targetPosition, speed * Time.deltaTime);
 
         // Check if the platform has reached the target position
         if (Vector3.Distance(platform.position, targetPosition) < 0.1f)
@@ -40,15 +38,6 @@ public class MovingPlatform : MonoBehaviour
         {
             Gizmos.DrawLine(platform.transform.position, startPoint.transform.position);
             Gizmos.DrawLine(platform.transform.position, endPoint.transform.position);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("Trigger Exit Player");
-            other.transform.parent = null;
         }
     }
 }

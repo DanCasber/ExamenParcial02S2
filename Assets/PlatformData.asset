@@ -15,4 +15,4 @@ MonoBehaviour:
   prefabName: BlockMoving1
   numberOfPrefabsToCreate: 1
   spawnPoints:
-  - {x: 0.043, y: 0.137, z: -5.482}
+  - {x: 0.043, y: 0.137, z: -6.66}
