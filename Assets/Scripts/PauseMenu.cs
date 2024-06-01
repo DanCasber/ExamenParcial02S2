@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject deathMenu;
+    [SerializeField] private GameObject victoryMenu;
 
     private bool isPaused = false;
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape) && !deathMenu.activeSelf && !victoryMenu.activeSelf)
         {
             if (isPaused)
             {

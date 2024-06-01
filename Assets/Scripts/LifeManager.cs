@@ -7,6 +7,9 @@ public class LifeManager : MonoBehaviour
     [SerializeField] private GameObject heart1;
     [SerializeField] private GameObject heart2;
     [SerializeField] private GameObject heart3;
+    [SerializeField] private GameObject levelUI;
+    [SerializeField] private GameObject deathMenu;
+    [SerializeField] private GameObject victoryMenu;
     [SerializeField] private Material dissolveMaterial;
     [SerializeField] private float dissolveDuration = 1.5f; 
 
@@ -58,6 +61,26 @@ public class LifeManager : MonoBehaviour
         if (other.gameObject.tag == "BlockMoving")
         {
             transform.parent = other.transform;
+        }
+
+        if (other.gameObject.tag == "Goal")
+        {
+            int layerIndex = gameObject.layer;
+            string layerName = LayerMask.LayerToName(layerIndex);
+            if (layerName != "Outline Objects")
+            {
+                currentLife = 0;
+                UpdateLife();
+            } else
+            {
+                // Pause Gameplay
+                Time.timeScale = 0f;
+
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                levelUI.SetActive(false);
+                victoryMenu.SetActive(true);
+            }
         }
     }
 
@@ -112,16 +135,20 @@ public class LifeManager : MonoBehaviour
         }
         dissolveMaterial.SetFloat("_dissolveStrength", 1f);
 
+        // Pause Gameplay
+        Time.timeScale = 0f;
+
         // Destroy player object
         Transform firstChild = transform.GetChild(0);
         Destroy(firstChild.gameObject);
-
-        // Pause Gameplay
-        Time.timeScale = 0f;
 
         // Reset dissolve effect
         dissolveMaterial.SetFloat("_dissolveStrength", 0f);
 
         // Trigger Death Canvas
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        levelUI.SetActive(false);
+        deathMenu.SetActive(true);
     }
 }

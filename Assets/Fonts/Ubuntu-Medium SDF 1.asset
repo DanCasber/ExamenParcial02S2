@@ -57,11 +57,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Ubuntu-Medium SDF
+  m_Name: Ubuntu-Medium SDF 1
   m_EditorClassIdentifier: 
-  hashCode: -2094358099
+  hashCode: -995924419
   material: {fileID: 754664931042543709}
-  materialHashCode: -930043795
+  materialHashCode: -2067028227
   m_Version: 1.1.0
   m_SourceFontFileGUID: 41b4bfd5d3d60c343853dbe58a1ef66a
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 41b4bfd5d3d60c343853dbe58a1ef66a,
@@ -2776,7 +2776,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.413
+    - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333

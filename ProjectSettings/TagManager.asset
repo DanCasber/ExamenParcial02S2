@@ -10,6 +10,7 @@ TagManager:
   - Heart
   - LavaItem
   - Lava
+  - Goal
   layers:
   - Default
   - TransparentFX

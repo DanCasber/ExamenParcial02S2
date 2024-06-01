@@ -6,6 +6,8 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI totalDeathScoreText;
+    [SerializeField] private TextMeshProUGUI totalVictoryScoreText;
 
     private int currentScore = 0;
     private GameObject[] allCoins;
@@ -17,6 +19,8 @@ public class ScoreManager : MonoBehaviour
         allCoins = GameObject.FindGameObjectsWithTag("Coin");
         PlayerPrefs.SetInt("TotalCoins", allCoins.Length);
         PlayerPrefs.Save();
+
+        UpdateScore();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,6 +36,8 @@ public class ScoreManager : MonoBehaviour
     void UpdateScore()
     {
         scoreText.text = currentScore.ToString("D2");
+        totalDeathScoreText.text = currentScore.ToString("D2") + "/" + allCoins.Length.ToString("D2");
+        totalVictoryScoreText.text = currentScore.ToString("D2") + "/" + allCoins.Length.ToString("D2");
 
         PlayerPrefs.SetInt("CollectedCoins", currentScore);
         PlayerPrefs.Save();
